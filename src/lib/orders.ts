@@ -1,5 +1,8 @@
 import { writable } from "svelte/store";
 
+// Reset localStorage on startup
+localStorage.setItem("orders", JSON.stringify([]));
+
 // Load initial data from localStorage
 const storedOrders = JSON.parse(localStorage.getItem("orders") || "[]");
 
