@@ -26,7 +26,7 @@
       <strong>Order #{order.id}</strong> - Status: {order.status}
       <ul>
         {#each order.items as item (item.name)}
-          <li>{item.name}</li>
+          <li>{item.name} x {item.qty}</li>
         {/each}
       </ul>
       {#if order.status === 'new'}

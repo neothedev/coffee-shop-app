@@ -15,10 +15,18 @@
     // add other properties if needed
   };
 
-  let cart: MenuItem[] = [];
+  type CartItem = MenuItem & { qty: number };
+
+  let cart: CartItem[] = [];
 
   function addToCart(item: MenuItem) {
-    cart = [...cart, item];
+    const idx = cart.findIndex(i => i.name === item.name);
+    if (idx !== -1) {
+      cart[idx].qty += 1;
+      cart = [...cart];
+    } else {
+      cart = [...cart, { ...item, qty: 1 }];
+    }
   }
 
   function placeOrder() {
@@ -46,8 +54,8 @@
 
 <h2>Cart</h2>
 <ul>
-  {#each cart as item}
-    <li>{item.name}</li>
+  {#each cart as item (item.name)}
+    <li>{item.name} x {item.qty}</li>
   {/each}
 </ul>
 
